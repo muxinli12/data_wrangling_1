@@ -1,0 +1,48 @@
+---
+title: "Data Import"
+output: github_document
+    
+---
+
+```{r}
+library(tidyverse)
+```
+
+Let's import a data set
+
+```{r}
+litters_df=
+  read_csv("data/FAS_litters.csv")
+```
+
+look at your data
+
+```{r}
+names(litters_df)
+```
+
+update the names in "litters_df"
+
+```{r}
+litters_df=
+  janitor::clean_names(litters_df)
+```
+
+look at the data
+
+```{r}
+litters_df
+```
+
+Sometimes skiming data is neat?
+
+```{r}
+skimr::skim(litters_df)
+```
+
+## Fix the missingness
+```{r}
+litters_df=
+  read_csv("data/FAS_litters.csv", na=c("NA",".",""))
+```
+
