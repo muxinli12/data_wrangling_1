@@ -6,6 +6,8 @@ output: github_document
 
 ```{r}
 library(tidyverse)
+library(readxl)
+library(haven)
 ```
 
 Let's import a data set
@@ -44,5 +46,55 @@ skimr::skim(litters_df)
 ```{r}
 litters_df=
   read_csv("data/FAS_litters.csv", na=c("NA",".",""))
+```
+
+## Import pups data
+
+```{r}
+pups_df=
+  read_csv(
+    "data/FAS_pups.csv",
+    skip=3,
+    na=c("NA",".","")
+  )
+pups_df=
+  janitor::clean_names(pups_df)
+```
+
+## Okay what about excel
+sometimes you get an excel file
+
+```{r}
+mlb_df=
+  read_excel("data/mlb11.xlsx")
+```
+
+Import Lots word count
+```{r}
+fot_df=
+  read_excel("data/LotR_Words.xlsx",range="B3:D6")
+```
+
+## SAS
+
+Import Fulse data
+```{r}
+pulse_df=
+  read_sas("data/public_pulse_data.sas7bdat")
+pulse_df=
+  janitor::clean_names(pulse_df)
+```
+
+
+## Why do i hate read.csv. zhongdian
+```{r, eval=FALSE}
+litters_df_base=
+  read.csv("data/FAS_litters.csv")
+```
+
+## what about data exporting
+
+```{r}
+write_csv(fot_df,"fot_df.csv")
 ```
 
